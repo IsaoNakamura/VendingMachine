@@ -52,10 +52,10 @@ namespace VendingMachine
             }
 
             // サポートする貨幣に1000円を追加
-            supportMoneyType.Append(1000);
+            int[] supportMoneyTypeEx = {1000, 500, 100, 10, 50 };
 
             // 自動販売機を拡張整備する(おみくじ機能と追加購入機能をON)
-            if (machine.maintain(stock_num, lineup, supportMoneyType, true, true) != 0)
+            if (machine.maintain(stock_num, lineup, supportMoneyTypeEx, true, true) != 0)
             {
                 Console.WriteLine("自動販売機の拡張整備時に致命的なエラーが発生しました。");
                 return;
