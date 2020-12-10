@@ -28,7 +28,9 @@ VisualStudio2019 forMacでもビルドと実行が可能。
 ## 実行方法
 ### 1. 本GitHubリポジトリをクローンして、ディレクトリに移動する
 ``git clone https://github.com/IsaoNakamura/VendingMachine.git``
+
 ``cd VendingMachine``
+
 ### 2. 以下のAPPを使用するので、このAPPのディレクトリに移動する。  
 [VendingMachine/App/VendingMachine](https://github.com/IsaoNakamura/VendingMachine/blob/master/App/VendingMachine)  
 ``cd App/VendingMachine`` 
