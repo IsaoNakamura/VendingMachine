@@ -44,7 +44,7 @@ VisualStudio2019 forMacでもビルドと実行が可能。
 ``mono VendingMachine.exe``
 
 ## クラス図
-![CLASS](https://github.com/IsaoNakamura/VendingMachine/blob/master/Doc/Images/VendingMachine_クラス図.png?raw=true)  
+![CLASS](https://raw.githubusercontent.com/IsaoNakamura/VendingMachine/main/Doc/Images/VendingMachine_%E3%82%AF%E3%83%A9%E3%82%B9%E5%9B%B3.png?raw=true)  
 
 ## シーケンス図
-![SEQ](https://github.com/IsaoNakamura/VendingMachine/blob/master/Doc/Images/VendingMachine_シーケンス図.png?raw=true)  
+![SEQ](https://raw.githubusercontent.com/IsaoNakamura/VendingMachine/main/Doc/Images/VendingMachine_%E3%82%B7%E3%83%BC%E3%82%B1%E3%83%B3%E3%82%B9%E5%9B%B3.png?raw=true)
