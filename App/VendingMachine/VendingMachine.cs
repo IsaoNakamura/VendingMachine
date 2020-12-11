@@ -8,24 +8,29 @@ using System.Text;
 
 namespace VendingMachine
 {
+    /**
+    * @brief 自動販売機クラス
+    */
     class VendingMachine
     {
-        // ドリンクストレージ辞書配列{ key=飲料名, value=ドリンクストレージ }
+        //! ドリンクストレージ辞書配列{ key=飲料名, value=ドリンクストレージ }
         private Dictionary<String, DrinkStorage> m_dictDrinkStorage { get; set; }
 
-        // ドリンク価格テーブル辞書配列{ key=飲料名, value=飲料価格 }
+        //! ドリンク価格テーブル辞書配列{ key=飲料名, value=飲料価格 }
         private Dictionary<String, int> m_dictDrinkPrice { get; set; }
 
-        // サポートする貨幣種類リスト ex) 10 50 100 500 1000
+        //! サポートする貨幣種類リスト ex) 10 50 100 500 1000
         private List<int> m_supportMoneyType { get; set; }
 
-        // おみくじ機能ON/OFFフラグ
+        //! おみくじ機能ON/OFFフラグ
         private bool m_activeLot { get; set; }
 
-        // 追加購入機能ON/OFFフラグ
+        //! 追加購入機能ON/OFFフラグ
         private bool m_activeAdd { get; set; }
 
-        // コンストラクタ privateにしてAPPからはcreateInstanceを呼び出してもらうようにする
+        /**
+		* @brief コンストラクタ privateにしてAPPからはcreateInstanceを呼び出してもらうようにする
+		*/
         private VendingMachine()
         {
             m_dictDrinkStorage = null;
@@ -37,13 +42,17 @@ namespace VendingMachine
             return;
         }
 
-        // デストラクタ
+        /**
+		* @brief デストラクタ
+		*/
         ~VendingMachine()
         {
             clear();
         }
 
-        // メンバ変数のクリア
+        /**
+		* @brief メンバ変数のクリア
+		*/
         private void clear()
         {
             if (m_dictDrinkStorage != null)
@@ -65,7 +74,12 @@ namespace VendingMachine
             }
         }
 
-        // インスタンスの生成
+        /**
+		* @brief VendingMachineのインスタンスを生成する
+        * @param[out] machine VendingMachineのインスタンス
+		* @retval 0 正常終了
+		* @retval 0以外 異常終了
+        */
         public static int createInstance(out VendingMachine machine)
         {
             int result = -1;
@@ -116,7 +130,11 @@ namespace VendingMachine
             return result;
         }
 
-        // 自販機を工場出荷状態に戻す
+        /**
+		* @brief 自販機を工場出荷状態に戻す。つまり、createInstanceされた直後に戻す。
+		* @retval 0 正常終了
+		* @retval 0以外 異常終了
+        */
         public int reset()
         {
             int result = -1;
@@ -160,7 +178,20 @@ namespace VendingMachine
             return result;
         }
 
-        // 自販機をメンテナンスする
+        /**
+		* @brief 自販機をメンテナンスする
+        * 自販機のメンテナンス内容は以下である。
+        * ・ドリンクストレージの追加・ドリンクの補充
+        * ・各機能のON/OFF設定
+        * ・製品ラインナップの設定
+        * @param[in] drink_stock_num ドリンクを補充する数
+        * @param[in] drink_lineup 製品ラインナップ,{ドリンク種類,価格}を要素とした配列
+        * @param[in] supportMoneyType サポートする貨幣種類配列
+        * @param[in] activeAdd 追加購入機能ON/OFFフラグ
+        * @param[in] activeLot おみくじ機能ON/OFFフラグ
+		* @retval 0 正常終了
+		* @retval 0以外 異常終了
+        */
         public int maintain
         (
             in int drink_stock_num,
@@ -184,6 +215,8 @@ namespace VendingMachine
                 {
                     m_supportMoneyType.Add(moneyType);
                 }
+                // 昇順に整列
+                m_supportMoneyType.Sort();
 
                 foreach (Tuple<string, int> element in drink_lineup)
                 {
@@ -252,8 +285,15 @@ namespace VendingMachine
             return result;
         }
 
-        // ドリンクストレージをメンテナンスする
-        // ドリンクストレージにドリンクを入れる場合に使用する
+        /**
+		* @brief ドリンクストレージをメンテナンスする
+        * ドリンクストレージにドリンクを入れる場合に使用する
+        * ドリンク種類に応じたドリンクストレージを取得および生成をする
+        * @param[out] drinkStorage ドリンク保持するストレージ
+        * @param[in] drinkName ドリンク種類名
+		* @retval 0 正常終了
+		* @retval 0以外 異常終了
+        */
         private int maintainStorage(out DrinkStorage drinkStorage, in String drinkName)
         {
             int result = -1;
@@ -295,8 +335,15 @@ namespace VendingMachine
             return result;
         }
 
-        // ドリンクストレージを取得する
-        // ドリンクストレージからドリンクを取り出す場合に使用する
+        /**
+		* @brief ドリンクストレージを取得する
+        * ドリンクストレージからドリンクを取り出す場合に使用する
+        * ドリンク種類に応じたドリンクストレージを取得する
+        * @param[out] drinkStorage ドリンク保持するストレージ
+        * @param[in] drinkName ドリンク種類名
+		* @retval 0 正常終了
+		* @retval 0以外 異常終了
+        */
         private int getStorage(out DrinkStorage drinkStorage, in String drinkName)
         {
             int result = -1;
@@ -334,7 +381,11 @@ namespace VendingMachine
             return result;
         }
 
-        // 全てのドリンクストレージが空かチェックする
+        /**
+		* @brief 全てのドリンクストレージが空かチェックする
+		* @retval true 全てのドリンクストレージが空
+		* @retval false ドリンクストレージのどれか1つでも空でない
+		*/
         private bool isEmptyAllStorage()
         {
             bool result = false;
@@ -362,10 +413,16 @@ namespace VendingMachine
             return result;
         }
 
-        // 投入金額の貨幣種類をチェックする
-        // ユーザには「飲み物名:投入金額」の形式で入力させており
-        // どのような組み合わせで金額を投入しているかはチェックできないので
-        // 一番小さい貨幣より細かい投入金額になってないかのみチェックする
+        /**
+		* @brief 投入金額の貨幣種類をチェックする
+        * ユーザには「飲み物名:投入金額」の形式で入力させており
+        * どのような組み合わせで金額を投入しているかはチェックできないので
+        * 一番小さい貨幣より細かい投入金額になってないかのみチェックする
+        * @param[out] isOK チェック結果 trueならOK falseならNG
+        * @param[in] input_amount 投入金額
+		* @retval 0 正常終了
+		* @retval 0以外 異常終了
+        */
         private int checkInputMoneyType(out bool isOK, in int input_amount)
         {
             int result = -1;
@@ -383,7 +440,6 @@ namespace VendingMachine
                 }
 
                 // ソート済みである前提
-                m_supportMoneyType.Sort();
                 int minType = m_supportMoneyType.First();
 
                 if (input_amount % minType == 0)
@@ -419,7 +475,13 @@ namespace VendingMachine
             return result;
         }
 
-        // 投入した金額を返却してリセットする
+        /**
+		* @brief 投入した金額を返却してリセットする
+        * @param[out] isOK チェック結果 trueならOK falseならNG
+        * @param[in] input_amount 投入金額
+		* @retval 0 正常終了
+		* @retval 0以外 異常終了
+        */
         private int resetAmount(ref int input_amount)
         {
             int result = -1;
@@ -446,7 +508,16 @@ namespace VendingMachine
             return result;
         }
 
-        // 取引処理
+        /**
+		* @brief 取引処理
+        * 投入金額からドリンク代を徴収してドリンクとお釣りをユーザに渡す
+        * おみくじ機能がONの場合、くじを引き当たりならドリンクを無料にする
+        * 追加購入機能がONの場合、ドリンク代徴収後の投入金額が商品の中で一番安い値段以上だったら追加購入可能とする
+        * @param[in,out] input_amount 投入金額
+        * @param[in,out] drink ドリンク
+		* @retval 0 正常終了
+		* @retval 0以外 異常終了
+        */
         private int transaction(ref int input_amount, ref Drink drink)
         {
             int result = -1;
@@ -531,7 +602,12 @@ namespace VendingMachine
             return result;
         }
 
-        // 稼働準備
+        /**
+		* @brief 稼働準備
+        * 稼働準備ができていなければ異常終了値を返す
+		* @retval 0 正常終了
+		* @retval 0以外 異常終了
+        */
         private int ready()
         {
             int result = -1;
@@ -564,8 +640,6 @@ namespace VendingMachine
                     return result;
                 }
 
-                m_supportMoneyType.Sort();
-
                 // ここまでくれば正常終了
                 result = 0;
             }
@@ -582,7 +656,12 @@ namespace VendingMachine
             return result;
         }
 
-        // くじを引く
+        /**
+		* @brief くじを引く
+        * @param[out] isBingo 大当たり有無フラグ
+		* @retval 0 正常終了
+		* @retval 0以外 異常終了
+        */
         private int drawLot(out bool isBingo)
         {
             int result = -1;
@@ -622,7 +701,14 @@ namespace VendingMachine
             return result;
         }
 
-        // メイン処理ループ
+        /**
+		* @brief 自動販売機のメインループ処理
+        * ユーザと対話で飲料の販売やり取りを行う
+        * 実行する前提として、maintainメソッドで自動販売機の整備が終わっていないといけない
+        * 全ての商品が売り切れたらループ処理を抜ける
+		* @retval 0 正常終了
+		* @retval 0以外 異常終了
+        */
         public int mainLoop()
         {
             int result = -1;

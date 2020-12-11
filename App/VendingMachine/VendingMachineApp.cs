@@ -3,8 +3,14 @@ using System.Linq;
 
 namespace VendingMachine
 {
+    /**
+    * @brief 自動販売機アプリケーションクラス
+    */
     class VendingMachineApp
     {
+        /**
+        * @brief メイン関数
+        */
         static void Main(string[] args)
         {
             // 自動販売機を製造する
