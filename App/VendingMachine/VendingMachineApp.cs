@@ -1,4 +1,11 @@
-﻿using System;
+﻿/**
+* @file VendingMachineApp.cs
+* @brief 自動販売機アプリを定義
+* @author Isao Nakamura
+* @date 2020-12-10
+*/
+
+using System;
 using System.Linq;
 
 namespace VendingMachine

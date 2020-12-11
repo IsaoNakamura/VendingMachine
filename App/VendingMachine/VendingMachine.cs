@@ -1,4 +1,11 @@
-﻿using System;
+﻿/**
+* @file VendingMachine.cs
+* @brief 自動販売機クラスを定義
+* @author Isao Nakamura
+* @date 2020-12-10
+*/
+
+using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Data;

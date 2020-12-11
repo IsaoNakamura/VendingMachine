@@ -1,4 +1,11 @@
-﻿using System;
+﻿/**
+* @file Drinke.cs
+* @brief ドリンククラスを定義
+* @author Isao Nakamura
+* @date 2020-12-10
+*/
+
+using System;
 using System.Collections.Generic;
 using System.Text;
 
