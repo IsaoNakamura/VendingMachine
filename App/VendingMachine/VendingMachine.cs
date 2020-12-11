@@ -650,15 +650,27 @@ namespace VendingMachine
                     }
                     Console.WriteLine("投入している金額は{0}円です。", input_amount);
                     Console.WriteLine("「飲み物名:投入金額」の形式で入力ください。");
+                    if (input_amount > 0)
+                    {
+                        Console.WriteLine("投入した金額を返却する場合は「q」を入力してください。");
+                    }
 
                     // 入力形式チェック
                     string input_line = Console.ReadLine();
                     string[] inputs = input_line.Split(':');
                     if (inputs.Length != 2)
                     {
-                        Console.WriteLine("正しく「飲み物名:投入金額」の形式で入力ください。");
-                        Console.WriteLine("\n");
-                        continue;
+                        if (inputs.Length == 1 &&input_amount > 0 && inputs[0].Equals("q"))
+                        {
+                            resetAmount(ref input_amount);
+                            continue;
+                        }
+                        else
+                        {
+                            Console.WriteLine("正しく「飲み物名:投入金額」の形式で入力ください。");
+                            Console.WriteLine("\n");
+                            continue;
+                        }
                     }
                     // 入力値解析
                     String　select_name = inputs[0];
