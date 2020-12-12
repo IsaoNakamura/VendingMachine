@@ -36,8 +36,8 @@ namespace VendingMachine
         private bool m_activeAdd { get; set; }
 
         /**
-		* @brief コンストラクタ privateにしてAPPからはcreateInstanceを呼び出してもらうようにする
-		*/
+        * @brief コンストラクタ privateにしてAPPからはcreateInstanceを呼び出してもらうようにする
+        */
         private VendingMachine()
         {
             m_dictDrinkStorage = null;
@@ -50,16 +50,16 @@ namespace VendingMachine
         }
 
         /**
-		* @brief デストラクタ
-		*/
+        * @brief デストラクタ
+        */
         ~VendingMachine()
         {
             clear();
         }
 
         /**
-		* @brief メンバ変数のクリア
-		*/
+        * @brief メンバ変数のクリア
+        */
         private void clear()
         {
             if (m_dictDrinkStorage != null)
@@ -82,10 +82,10 @@ namespace VendingMachine
         }
 
         /**
-		* @brief VendingMachineのインスタンスを生成する
+        * @brief VendingMachineのインスタンスを生成する
         * @param[out] machine VendingMachineのインスタンス
-		* @retval 0 正常終了
-		* @retval 0以外 異常終了
+        * @retval 0 正常終了
+        * @retval 0以外 異常終了
         */
         public static int createInstance(out VendingMachine machine)
         {
@@ -138,9 +138,9 @@ namespace VendingMachine
         }
 
         /**
-		* @brief 自販機を工場出荷状態に戻す。つまり、createInstanceされた直後に戻す。
-		* @retval 0 正常終了
-		* @retval 0以外 異常終了
+        * @brief 自販機を工場出荷状態に戻す。つまり、createInstanceされた直後に戻す。
+        * @retval 0 正常終了
+        * @retval 0以外 異常終了
         */
         public int reset()
         {
@@ -186,7 +186,7 @@ namespace VendingMachine
         }
 
         /**
-		* @brief 自販機をメンテナンスする
+        * @brief 自販機をメンテナンスする
         * 自販機のメンテナンス内容は以下である。
         * ・ドリンクストレージの追加・ドリンクの補充
         * ・各機能のON/OFF設定
@@ -196,8 +196,8 @@ namespace VendingMachine
         * @param[in] supportMoneyType サポートする貨幣種類配列
         * @param[in] activeAdd 追加購入機能ON/OFFフラグ
         * @param[in] activeLot おみくじ機能ON/OFFフラグ
-		* @retval 0 正常終了
-		* @retval 0以外 異常終了
+        * @retval 0 正常終了
+        * @retval 0以外 異常終了
         */
         public int maintain
         (
@@ -293,13 +293,13 @@ namespace VendingMachine
         }
 
         /**
-		* @brief ドリンクストレージをメンテナンスする
+        * @brief ドリンクストレージをメンテナンスする
         * ドリンクストレージにドリンクを入れる場合に使用する
         * ドリンク種類に応じたドリンクストレージを取得および生成をする
         * @param[out] drinkStorage ドリンク保持するストレージ
         * @param[in] drinkName ドリンク種類名
-		* @retval 0 正常終了
-		* @retval 0以外 異常終了
+        * @retval 0 正常終了
+        * @retval 0以外 異常終了
         */
         private int maintainStorage(out DrinkStorage drinkStorage, in String drinkName)
         {
@@ -343,13 +343,13 @@ namespace VendingMachine
         }
 
         /**
-		* @brief ドリンクストレージを取得する
+        * @brief ドリンクストレージを取得する
         * ドリンクストレージからドリンクを取り出す場合に使用する
         * ドリンク種類に応じたドリンクストレージを取得する
         * @param[out] drinkStorage ドリンク保持するストレージ
         * @param[in] drinkName ドリンク種類名
-		* @retval 0 正常終了
-		* @retval 0以外 異常終了
+        * @retval 0 正常終了
+        * @retval 0以外 異常終了
         */
         private int getStorage(out DrinkStorage drinkStorage, in String drinkName)
         {
@@ -389,10 +389,10 @@ namespace VendingMachine
         }
 
         /**
-		* @brief 全てのドリンクストレージが空かチェックする
-		* @retval true 全てのドリンクストレージが空
-		* @retval false ドリンクストレージのどれか1つでも空でない
-		*/
+        * @brief 全てのドリンクストレージが空かチェックする
+        * @retval true 全てのドリンクストレージが空
+        * @retval false ドリンクストレージのどれか1つでも空でない
+        */
         private bool isEmptyAllStorage()
         {
             bool result = false;
@@ -421,14 +421,14 @@ namespace VendingMachine
         }
 
         /**
-		* @brief 投入金額の貨幣種類をチェックする
+        * @brief 投入金額の貨幣種類をチェックする
         * ユーザには「飲み物名:投入金額」の形式で入力させており
         * どのような組み合わせで金額を投入しているかはチェックできないので
         * 一番小さい貨幣より細かい投入金額になってないかのみチェックする
         * @param[out] isOK チェック結果 trueならOK falseならNG
         * @param[in] input_amount 投入金額
-		* @retval 0 正常終了
-		* @retval 0以外 異常終了
+        * @retval 0 正常終了
+        * @retval 0以外 異常終了
         */
         private int checkInputMoneyType(out bool isOK, in int input_amount)
         {
@@ -483,11 +483,11 @@ namespace VendingMachine
         }
 
         /**
-		* @brief 投入した金額を返却してリセットする
+        * @brief 投入した金額を返却してリセットする
         * @param[out] isOK チェック結果 trueならOK falseならNG
         * @param[in] input_amount 投入金額
-		* @retval 0 正常終了
-		* @retval 0以外 異常終了
+        * @retval 0 正常終了
+        * @retval 0以外 異常終了
         */
         private int resetAmount(ref int input_amount)
         {
@@ -516,14 +516,14 @@ namespace VendingMachine
         }
 
         /**
-		* @brief 取引処理
+        * @brief 取引処理
         * 投入金額からドリンク代を徴収してドリンクとお釣りをユーザに渡す
         * おみくじ機能がONの場合、くじを引き当たりならドリンクを無料にする
         * 追加購入機能がONの場合、ドリンク代徴収後の投入金額が商品の中で一番安い値段以上だったら追加購入可能とする
         * @param[in,out] input_amount 投入金額
         * @param[in,out] drink ドリンク
-		* @retval 0 正常終了
-		* @retval 0以外 異常終了
+        * @retval 0 正常終了
+        * @retval 0以外 異常終了
         */
         private int transaction(ref int input_amount, ref Drink drink)
         {
@@ -610,10 +610,10 @@ namespace VendingMachine
         }
 
         /**
-		* @brief 稼働準備
+        * @brief 稼働準備
         * 稼働準備ができていなければ異常終了値を返す
-		* @retval 0 正常終了
-		* @retval 0以外 異常終了
+        * @retval 0 正常終了
+        * @retval 0以外 異常終了
         */
         private int ready()
         {
@@ -664,10 +664,10 @@ namespace VendingMachine
         }
 
         /**
-		* @brief くじを引く
+        * @brief くじを引く
         * @param[out] isBingo 大当たり有無フラグ
-		* @retval 0 正常終了
-		* @retval 0以外 異常終了
+        * @retval 0 正常終了
+        * @retval 0以外 異常終了
         */
         private int drawLot(out bool isBingo)
         {
@@ -709,12 +709,12 @@ namespace VendingMachine
         }
 
         /**
-		* @brief 自動販売機のメインループ処理
+        * @brief 自動販売機のメインループ処理
         * ユーザと対話で飲料の販売やり取りを行う
         * 実行する前提として、maintainメソッドで自動販売機の整備が終わっていないといけない
         * 全ての商品が売り切れたらループ処理を抜ける
-		* @retval 0 正常終了
-		* @retval 0以外 異常終了
+        * @retval 0 正常終了
+        * @retval 0以外 異常終了
         */
         public int mainLoop()
         {

@@ -63,10 +63,10 @@ namespace VendingMachine
         }
 
         /**
-		* @brief DrinkStorageのインスタンスを生成する
+        * @brief DrinkStorageのインスタンスを生成する
         * @param[out] drinkStorage DrinkStorageのインスタンス
-		* @retval 0 正常終了
-		* @retval 0以外 異常終了
+        * @retval 0 正常終了
+        * @retval 0以外 異常終了
         */
         public static int createInstance(out DrinkStorage drinkStorage)
         {
@@ -107,10 +107,10 @@ namespace VendingMachine
         }
 
         /**
-		* @brief ドリンクストレージにドリンクを追加する
+        * @brief ドリンクストレージにドリンクを追加する
         * @param[in] ドリンクのインスタンス
-		* @retval 0 正常終了
-		* @retval 0以外 異常終了
+        * @retval 0 正常終了
+        * @retval 0以外 異常終了
         */
         public int pushDrink(ref Drink drink)
         {
@@ -154,10 +154,10 @@ namespace VendingMachine
         }
 
         /**
-		* @brief ドリンクストレージからドリンクを取り出す
+        * @brief ドリンクストレージからドリンクを取り出す
         * @param[out] ドリンクのインスタンス
-		* @retval 0 正常終了
-		* @retval 0以外 異常終了
+        * @retval 0 正常終了
+        * @retval 0以外 異常終了
         */
         public int popDrink(out Drink drink)
         {
